@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <meta name="description" content="">
+                <meta name="author" content="">
+              
+                <title>Violencia psicológica</title>
+              
+                <!-- Font Awesome Icons -->
+                <link href="{%  static 'tu/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+              
+                <!-- Google Fonts -->
+                <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+                <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic'
+                  rel='stylesheet' type='text/css'>
+              
+                <!-- Plugin CSS -->
+                <link href="{%  static 'tu/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+              
+                <!-- Theme CSS - Includes Bootstrap -->
+                <link href="{%  static 'tu/css/creative.min.css' %}" rel="stylesheet">
+              
+        </head>
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        {% include 'encuesta/enc_header.html' %}
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div id="wizard" class="form_wizard wizard_horizontal">
+              <ul class="wizard_steps anchor">
+                <li>
+                  <a href="#step-1" class="selected" isdone="1" rel="1">
+                    <span class="step_no">1</span>
+                    <span class="step_descr">
+                                      Paso 1<br>
+                                      <small>Step 1 Completar su informacion personal</small>
+                                  </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#step-2" class="disabled" isdone="0" rel="2">
+                    <span class="step_no">2</span>
+                    <span class="step_descr">
+                                      Paso 2<br>
+                                      <small>Step 2 Hacer Test</small>
+                                  </span>
+                  </a>
+                </li>
+                <li>
+                  
+                </li>
+                <li>
+                  
+                </li>
+              </ul>
+              
+              
+              
+              
+
+            <div class="stepContainer" style="height: 287px;"><div id="step-1" class="content" style="display: block;">
+                <form class="form-horizontal form-label-left">
+
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="edad">¿Cuántos años tiene? <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 ">
+                      <input type="number" id="edad" required="required" class="form-control" size="2" maxlength="2">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="ocupacion">¿A qué se dedica?<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 ">
+                      <input type="text" id="ocupacion" name="ocupacion" required="required" class="form-control ">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="estado">¿Cuál es su estado civil?<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 ">
+                      <select class="form-control">
+                        <option>Conviviente</option>
+                        <option>Casada </option>
+                        <option>Soltera</option>
+                     </select>                      
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align">¿Cuál es su nivel de educación?</label>
+                    <div class="col-md-6 col-sm-6 ">
+                      <input type="text" id="educacion" name="educacion" required="required" class="form-control ">
+
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align">¿Cuántos hijos tiene? <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 ">
+                      <input type="number" id="hijos" required="required" class="form-control" size="2" maxlength="2">
+                    </div>
+                  </div>
+
+                </form>
+
+              </div><div id="step-2" class="content" style="display: none;">
+                <h2 class="StepTitle">Step 2 Content</h2>
+                <p>
+                  <div class="form-group">
+                    <label>1. Degrada su apariencia física </label>
+                    <select class="form-control">
+                        <option>Nunca</option>
+                        <option>Alguna vez</option>
+                        <option>La mitad de las veces</option>
+                        <option>Muchas veces</option>
+                        <option>Casi siempre</option>
+                    </select>
+                </div>           
+               </p>
+               <a href="test2mujer/" class="buttonNext btn btn-success">Siguiente</a>                
+              </div></div><div class="actionBar">
+                <div class="msgBox"><div class="content"></div>
+                <a href="#" class="close">X</a></div><div class="loader">Loading</div>
+                <a href= "#"class="buttonFinish buttonDisabled btn btn-default">Finish</a>
+                <a href="{% url 'hubpage:pa7' %}"class="buttonNext btn btn-success">Siguiente</a>
+                <a href="#" class="buttonPrevious buttonDisabled btn btn-primary">Previous</a></div></div>
+
+          </div>
+        </div>
+        <!-- /page content -->
+        {% include 'hubpage/tu_footer.html' %}
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{%  static 'ta/vendors/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap -->
+   <script src="{%  static 'ta/vendors/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- FastClick -->
+    <script src="{%  static 'ta/vendors/fastclick/lib/fastclick.js' %}"></script>
+    <!-- NProgress -->
+    <script src="{%  static 'ta/vendors/nprogress/nprogress.js' %}"></script>
+    <!-- jQuery Smart Wizard -->
+    <!-- Custom Theme Scripts -->
+    <script src="{%  static 'ta/js/custom.min.js' %}"></script>
+
+  </body>
+</html>
