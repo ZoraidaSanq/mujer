@@ -52,9 +52,11 @@ class Pregunta(ModelAudit):
         return '{} -- {}'.format(self.encuesta.nombre, self.pregunta)
 
 
+estados_civiles =(('S','SOLTERA'),)
+
 class Mujer(ModelAudit):
     ocupacion = models.CharField(max_length=40)
-    estadocivil = models.CharField(max_length=1)
+    estadocivil = models.CharField(max_length=1,choices=estados_civiles)
     nivel_educacion = models.CharField(max_length=60)
     hijos = models.PositiveIntegerField()
     edad = models.PositiveIntegerField()

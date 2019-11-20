@@ -9,15 +9,26 @@
       <div class="col-md-12">
 
         <form class="form-horizontal form-label-left" method="POST">
-          {% csrf_token %}
+
+          <div class="form-group row">
+            {% csrf_token %}
+            {% if formmujer.estadocivil.errors %}
+            {% for i in formmujer.estadocivil.errors %}
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="edad"> {{ i }} </label>
+
+            {% endfor %}
+
+            {% endif %}
+          </div>
 
           <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="edad">¿Cuántos años tiene? <span
                 class="required">*</span>
             </label>
-            
+
             <div class="col-md-6 col-sm-6 ">
-              <input type="number" id="edad" required="required" class="form-control" size="2" maxlength="2">
+              {{ formmujer.edad }}
+
             </div>
           </div>
 
@@ -28,26 +39,36 @@
                 class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="text" id="ocupacion" name="ocupacion" required="required" class="form-control ">
+              {{ formmujer.ocupacion }}
+          
+
             </div>
           </div>
+
+
+
           <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="estado">¿Cuál es su estado civil?<span
                 class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <select class="form-control">
-                <option>Conviviente</option>
-                <option>Casada </option>
-                <option>Soltera</option>
-              </select>
+              {{ formmujer.estadocivil }}
+              {% if formmujer.estadocivil.errors %}
+              {% for i in formmujer.estadocivil.errors %}
+              <label class="col-form-label  label-align text-danger" > {{ i|escape }} </label>
+  
+              {% endfor %}
+  
+              {% endif %}
             </div>
           </div>
 
+
+          
           <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align">¿Cuál es su nivel de educación?</label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="text" id="educacion" name="educacion" required="required" class="form-control ">
+              {{ formmujer.nivel_educacion }}
 
             </div>
           </div>
@@ -57,11 +78,12 @@
                 class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="number" id="hijos" required="required" class="form-control" size="2" maxlength="2">
+              {{ formmujer.hijos }}
+
             </div>
           </div>
-          
-          <input type="submit"class="form-control" value="enviar""> 
+
+          <input type="submit" class="form-control" value="enviar""> 
 
         </form>
 

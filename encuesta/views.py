@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .form import MujerForm
 
 
 def index(request):
@@ -17,26 +18,35 @@ def mujer(request):
   #  return render(request, 'adminpage/ta_base.html', context)
 
 def log(request):
-    context={}
+    context = {}
     return render(request, 'login/logadmin.html', context)
 
 
 def mujer2(request):
-    context={}
+    context = {}
     return render(request, 'adminpage/ta_base.html', context)
 
 
 def repor(request):
-    context={}
+    context = {}
     return render(request, 'reportes/listarencuesta.html', context)
 
 
 def encuesta(request):
-    context={}
+    context = {
+        'formmujer': MujerForm
+    }
     if request.method == 'POST':
-        print(request.POST.get('ocupacion'))
+        formmujer = MujerForm(request.POST)
+        if formmujer.is_valid():
+            formmujer.save()
+        context = {
+            'formmujer': formmujer
+        }
+
     return render(request, 'encuesta/tj.html', context)
 
+
 def encuesta2(request):
-    context={}
+    context = {}
     return render(request, 'encuesta/questionario.html', context)
