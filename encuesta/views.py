@@ -33,6 +33,8 @@ def repor(request):
 
 def encuesta(request):
     context={}
+    if request.method == 'POST':
+        print(request.POST.get('ocupacion'))
     return render(request, 'encuesta/tj.html', context)
 
 def encuesta2(request):
