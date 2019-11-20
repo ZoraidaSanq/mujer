@@ -1,11 +1,28 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .form import MujerForm
+from .models import (Encuesta)
 
 
 def index(request):
-    context = {'nombre': ' soy alguien'}
-    return render(request, 'hubpage/algo.html', context)
+    _encuesta = Encuesta.objects.filter(isuso=True,estado=True)
+    context = {'encuesta': _encuesta}
+    return render(request, 'hubpage/index.html', context)
+
+
+def encuesta(request, nombre=None, pk=None):
+    context = {
+        'formmujer': MujerForm
+    }
+    if request.method == 'POST':
+        formmujer = MujerForm(request.POST)
+        if formmujer.is_valid():
+            formmujer.save()
+        context = {
+            'formmujer': formmujer
+        }
+
+    return render(request, 'encuesta/encuesta.html', context)
 
 
 def mujer(request):
@@ -32,21 +49,8 @@ def repor(request):
     return render(request, 'reportes/listarencuesta.html', context)
 
 
-def encuesta(request):
-    context = {
-        'formmujer': MujerForm
-    }
-    if request.method == 'POST':
-        formmujer = MujerForm(request.POST)
-        if formmujer.is_valid():
-            formmujer.save()
-        context = {
-            'formmujer': formmujer
-        }
-
-    return render(request, 'encuesta/tj.html', context)
 
 
 def encuesta2(request):
     context = {}
-    return render(request, 'encuesta/questionario.html', context)
+    return render(request, 'encuesta/listarenc.html', context)

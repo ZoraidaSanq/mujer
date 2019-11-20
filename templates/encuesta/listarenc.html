@@ -1,0 +1,562 @@
+{% extends 'hubpage/tu_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="page-section" id="Hacer Test">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <form class="form-horizontal form-label-left" method="POST">
+
+
+            <table class="table table-striped jambo_table bulk_action">
+                <thead>
+                  <tr class="headings">
+                    <th>
+                      <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" id="check-all" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                    </th>
+                    <th class="column-title">Nombre </th>
+                    <th class="column-title">Descripcion </th>
+                    <th class="column-title">Estado </th>
+                   
+                    <th class="column-title no-link last"><span class="nobr">Action</span>
+                    </th>
+                    <th class="bulk-actions" colspan="7">
+                      <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                    </th>
+                  </tr>
+                </thead>
+        
+                <tbody>
+                  <tr class="even pointer">
+                    <td class="a-center ">
+                      <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                    </td>
+                    <td class=" ">APCM</td>
+                    <td class=" ">inventario de maltrato psicologico a la mujer] </td>
+                    <td class=" ">true <i class="success fa fa-long-arrow-up"></i></td>
+                   
+                    <td class=" last"><a href="test2mujer/">View</a>
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+          
+          
+          <div class="form-group row">
+            {% csrf_token %}
+            {% if formmujer.estadocivil.errors %}
+            {% for i in formmujer.estadocivil.errors %}
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="edad"> {{ i }} </label>
+
+            {% endfor %}
+
+            {% endif %}
+          </div>
+
+          <div class="form-group row">
+              <label class="col-form-label col-md-3 col-sm-3 label-align" for="edad">Encuesta<span
+                  class="required">*</span>
+              </label>
+  
+              <div class="col-md-6 col-sm-6 ">
+                {{ formencuesta.estado }}
+  
+              </div>
+            </div>
+
+          <div class="form-group row">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="edad">¿Cuántos años tiene? <span
+                class="required">*</span>
+            </label>
+
+            <div class="col-md-6 col-sm-6 ">
+              {{ formmujer.edad }}
+
+            </div>
+          </div>
+
+
+
+          <div class="form-group row">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="ocupacion">¿A qué se dedica?<span
+                class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              {{ formmujer.ocupacion }}
+          
+
+            </div>
+          </div>
+
+
+
+          <div class="form-group row">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="estado">¿Cuál es su estado civil?<span
+                class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              {{ formmujer.estadocivil }}
+              {% if formmujer.estadocivil.errors %}
+              {% for i in formmujer.estadocivil.errors %}
+              <label class="col-form-label  label-align text-danger" > {{ i|escape }} </label>
+  
+              {% endfor %}
+  
+              {% endif %}
+            </div>
+          </div>
+
+
+
+          <div class="form-group row">
+            <label class="col-form-label col-md-3 col-sm-3 label-align">¿Cuál es su nivel de educación?</label>
+            <div class="col-md-6 col-sm-6 ">
+              {{ formmujer.nivel_educacion }}
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-form-label col-md-3 col-sm-3 label-align">¿Cuántos hijos tiene? <span
+                class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              {{ formmujer.hijos }}
+
+            </div>
+          </div>
+
+          <fieldset class="form-group">
+              <h4>Seleccione la opción </h4>
+          </fieldset>
+
+          <div class="form-group">
+              <label>1. Degrada su apariencia física </label>
+              <div class="col-md-6 col-sm-6 ">
+                  {{ preguntaform.pregunta }}
+    
+                </div>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+              <div class="col-md-6 col-sm-6 ">
+                  {{ preguntaform.pregunta }}
+    
+                </div>
+          </div>
+          <div class="form-group">
+              <label>2. Le insulta o hiere delante de otras personas </label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>3. Le trata como si fuera tonta</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>4. Le dice que no podrá cuidar de sí misma sin él</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>5. Degrada como cuida a los niños</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>6. Critica su forma de cómo llevar la casa</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>7. Saca algo del pasado para herirla</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>8. Le grita y chilla</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>9. Le trata como si fuese inferior</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>10. No le habla o actúa como si no existiese</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>11. No habla de cómo se siente usted</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>12. Exige obediencia ante sus caprichos</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>13. Se altera si no está hecho el trabajo de la casa cuando piensa que debería estarlo
+              </label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>14. Actúa como si usted fuese su empleada privada</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>15. No hace un reparto justo de las tareas de la casa</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>16. No hace un reparto justo del cuidado de los niños</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>17. Le manda en todo</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>18. Le controla el tiempo y le hace explicarle dónde se fue</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>19. Usa su dinero o toma decisiones económicas importantes sin consultarle</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>20. Tuvo celos de sus amigas</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>21. No quiere que estudie o que haga actividades económicas que la promocionen</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>22. No quiere que salga con amigas</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>23. Le acusa de tener una aventura con otra persona</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>24. Le exige que se quede en casa y cuide a los niños</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>25. Intenta que no vea o hable con su familia</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>26. Interfiere en su relación con otros miembros de la familia</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>27. Intenta evitar que haga cosas que le puedan ayudar a sí misma</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>28. No le permite salir de casa cuando usted quiere hacerlo</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>29. No le deja trabajar fuera de casa</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>30. Le dice que sus sentimientos fueron irracionales</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>31. Le echa la culpa de sus propios problemas</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>32. Le acusa de causar la conducta violenta</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>33. Intenta hacer que se sienta como si estuviera loca</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>34. Le echa la culpa a usted cuando él está alterado, aunque usted no tenga la culpa</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>35. Intenta convencer a sus amigos, familia o hijos de que usted estaba loca</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>36. Amenaza con quitarle a los niños</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>37. Se enfada mucho si se muestra en desacuerdo con sus puntos de vista</label>
+              <select class="form-control">
+                  <option>Nunca</option>
+                  <option>Alguna vez</option>
+                  <option>La mitad de las veces</option>
+                  <option>Muchas veces</option>
+                  <option>Casi siempre</option>
+              </select>
+          </div>
+
+          <input type="submit" class="form-control" value="enviar""> 
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
