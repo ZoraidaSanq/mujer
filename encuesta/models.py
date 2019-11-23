@@ -44,8 +44,10 @@ class Pregunta(ModelAudit):
     pregunta = models.CharField(max_length=60)
     registro = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
-    likert = models.ForeignKey(Likert, on_delete=models.PROTECT, blank=True)
     orden = models.PositiveIntegerField()
+    encuesta = models.ForeignKey(Encuesta, on_delete=models.PROTECT)
+
+    
 
     def __str__(self):
         return '{} -- {}'.format(self.encuesta.nombre, self.pregunta)

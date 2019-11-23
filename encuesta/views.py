@@ -45,14 +45,13 @@ def encuesta(request, nombre=None, pk=None):
     return render(request, 'encuesta/encuesta.html', context)
         
 def preguntaresul(request,nombre=None,pk=None,pkqr=None):
-    _encuesta = Encuesta.objects.filter(estado=True,isuso=True,id=pk)
+    _encuesta = Encuesta.objects.filter(estado=True,isuso=True,id=pk).first()
 
     context ={
-        "formmujer" : MujerForm,
-        "formencuesta":_encuesta,
-        "formpregunta":PreguntaForm
+        "encuesta" :_encuesta,
+        "form" :PreguntaForm2
     }
-    return render(request, 'encuesta/encuesta.html',context)
+    return render(request, 'encuesta/listarenc.html',context)
           
         
 

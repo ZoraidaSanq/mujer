@@ -1,5 +1,5 @@
 from django import forms
-from .models import Mujer,Pregunta,Encuesta,EncuestaMujer,Preguntaresultado
+from .models import Mujer,Pregunta,Encuesta,EncuestaMujer,Preguntaresultado,Likert
 
 
 class MujerForm(forms.ModelForm):
@@ -18,13 +18,26 @@ class MujerForm(forms.ModelForm):
 class PreguntaForm(forms.ModelForm):
     class Meta:
         model = Pregunta
-        fields = ['pregunta','likert','orden']
+        fields = ['pregunta','orden']
         widgets = {
             'pregunta': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'ingresa su ocupacion'}),
-            'likert': forms.Select(attrs={'class': 'form-control', 'placeholder': 'ingresa una descripcion'}),
             'orden': forms.NumberInput(attrs={'class': 'form-control'}),
 
         }
+class PreguntaForm2(forms.ModelForm):
+     def __init__(self, *args, **kwargs):
+            user = kwargs.pop('user','')
+            super(PreguntaForm2, self).__init__(*args, **kwargs)
+            self.fields['likert']=forms.ModelChoiceField(queryset=Likert.objects.filter(encuesta_id=1))
+     class Meta:
+        model = Pregunta
+        fields = ['pregunta','orden']
+        widgets = {
+            'pregunta': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'ingresa su ocupacion'}),
+            'orden': forms.NumberInput(attrs={'class': 'form-control'}),
+            'likert': forms.Select(attrs={'class': 'form-control'}),
+        }
+    
 
 class EncuestaForm(forms.ModelForm):
     class Meta:
