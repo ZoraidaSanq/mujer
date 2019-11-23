@@ -1,276 +1,89 @@
-<h3>Encuesta
-    <small>Reportes</small>
- </h3>
- <div class="container-fluid">
-    <div class="row">
-       <div class="col-md-12">
-          <div id="" class="panel panel-default">
-             <!-- <div class="panel-heading">Basic Tabs</div>-->
-             <div class="panel-body">
-                <!--<button type="button" class="btn btn-default btn-sm" ng-click="matrireporCtrl.active = 0">Select first tab - exterior button</button>-->
-                <div class="tabs-container">
-                   <uib-tabset active="matrireporCtrl.active" index="$index">
-                      <uib-tab heading="Reportes" ng-click="matrireporCtrl.setTabChangeTo(0)">
-                         <fieldset>
-                            <!--<legend>-->
-                            <!--<h4 class="lead">Seleccione un reporte:</h4>-->
-                            <!--</legend>-->
-                            <div class="row">
-                               <div class="col-md-12">
-                                  <small class="lead">Listado de encuesta</small>
-                                  <br>
-                                  <form name="matrireporCtrl.frmTipo2" novalidate="" role="form" class="form-validate" ng-submit="matrireporCtrl.reporteTipo(matrireporCtrl.frmt2,'2')">
-                                     <div class="col-md-3">
-                                        <div class="form-group">
-                                           <label for="frmt2_procesomatricula">Procesomatricula</label>
-                                           <select name="frmt2_procesomatricula" id="frmt2_procesomatricula" ng-model="matrireporCtrl.frmt2.procesomatricula" class="form-control input-sm" ng-options="procesomatricula as procesomatricula.codigo for procesomatricula in matrireporCtrl.listadoProcesoMatriculaF2"
-                                           required>
-                                              <option value="">Seleccione..</option>
-                                           </select>
-                                           <span ng-show="matrireporCtrl.validateInputF2('frmt2_procesomatricula', 'required')" class="text-danger">Debe seleccionar un procesomatricula</span>
-                                        </div>
-                                     </div>
-                                     <div class="col-md-2 ">
-                                        <div class="form-group">
-                                           <p style="color: white">_</p>
-                                           <div class="pull-right">
-                                              <button type="submit" class="btn btn-labeled btn-danger">
-                                                 <span class="btn-label"><i class="fa fa-file-pdf-o"></i>
-                                                 </span>Generar
-                                              </button>
-                                           </div>
-                                        </div>
-                                     </div>
-                                  </form>
-                               </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                               <div class="col-md-12">
-                                  <small class="lead">Listado de Matriculados por Proceso→Servicio→Semestre(ciclo)</small>
-                                  <br>
-                                  <form name="matrireporCtrl.frmTipo3" novalidate="" role="form" class="form-validate" ng-submit="matrireporCtrl.reporteTipo(matrireporCtrl.frmt3,'3')">
-                                     <div class="col-md-3">
-                                        <div class="form-group">
-                                           <label for="frmt3_procesomatricula">Procesomatricula</label>
-                                           <select name="frmt3_procesomatricula" id="frmt3_procesomatricula" ng-model="matrireporCtrl.frmt3.procesomatricula" class="form-control input-sm" ng-options="procesomatricula as procesomatricula.codigo for procesomatricula in matrireporCtrl.listadoProcesoMatriculaF3"
-                                           required>
-                                              <option value="">Seleccione..</option>
-                                           </select>s
-                                           <span ng-show="matrireporCtrl.validateInputF3('frmt3_procesomatricula', 'required')" class="text-danger">Debe seleccionar un Proceso</span>
-                                        </div>
-                                     </div>
-                                     <div class="col-md-3" ng-if="matrireporCtrl.frmt3.procesomatricula.id !== undefined">
-                                        <div class="form-group">
-                                           <label for="frmt3_servicio">Servicio</label>
-                                           <select name="frmt3_servicio" id="frmt3_servicio" ng-model="matrireporCtrl.frmt3.servicio" class="form-control input-sm" ng-options="servicio as servicio.codigo for servicio in matrireporCtrl.listadoServicio" ng-change="matrireporCtrl.listarSemestre(matrireporCtrl.frmt3.servicio,'3')"
-                                           required>
-                                              <option value="">Seleccione..</option>
- 
-                                           </select>
-                                           <span ng-show="matrireporCtrl.validateInputF3('frmt3_servicio', 'required')" class="text-danger">Debe seleccionar un servicio</span>
-                                        </div>
-                                     </div>
-                                     <div class="col-md-3" ng-if="matrireporCtrl.frmt3.servicio.id !== undefined && matrireporCtrl.frmt3.procesomatricula.id !== undefined">
-                                        <div class="form-group">
-                                           <label for="frmt3_semestre">Semestre</label>
-                                           <select name="frmt3_semestre" id="frmt3_semestre" ng-model="matrireporCtrl.frmt3.semestre" class="form-control input-sm" ng-options="semestre as semestre.codigo for semestre in matrireporCtrl.listadoSemestreF3" required>
-                                              <option value="">Seleccione..</option>
-                                           </select>
-                                           <span ng-show="matrireporCtrl.validateInputF3('frmt3_semestre', 'required')" class="text-danger">Debe seleccionar un semestre</span>
-                                        </div>
-                                     </div>
-                                     <div class="col-md-2 ">
-                                        <div class="form-group">
-                                           <p style="color: white">_</p>
-                                           <div class="pull-right">
-                                              <button type="submit" class="btn btn-labeled btn-danger">
-                                                 <span class="btn-label"><i class="fa fa-file-pdf-o"></i>
-                                                 </span>Generar
-                                              </button>
-                                           </div>
-                                        </div>
-                                     </div>
-                                  </form>
-                               </div>
-                            </div>
-                            <div class="row">
-                               <div class="col-md-12">
-                                  <small class="lead">Listado de Matriculados por Proceso→Servicio→Semestre(ciclo)→Curso</small>
-                                  <br>
-                                  <form name="matrireporCtrl.frmTipo4" novalidate="" role="form" class="form-validate" ng-submit="matrireporCtrl.reporteTipo(matrireporCtrl.frmt4,'4')">
-                                     <div class="col-md-3">
-                                        <div class="form-group">
-                                           <label for="frmt4_procesomatricula">Procesomatricula</label>
-                                           <select name="frmt4_procesomatricula" id="frmt4_procesomatricula" ng-model="matrireporCtrl.frmt4.procesomatricula" class="form-control input-sm" ng-options="procesomatricula as procesomatricula.codigo for procesomatricula in matrireporCtrl.listadoProcesoMatriculaF4"
-                                           required>
-                                              <option value="">Seleccione..</option>
-                                           </select>
-                                           <span ng-show="matrireporCtrl.validateInputF4('frmt4_procesomatricula', 'required')" class="text-danger">Debe seleccionar un Proceso</span>
-                                        </div>
-                                     </div>
-                                     <div class="col-md-2" ng-if="matrireporCtrl.frmt4.procesomatricula.id !== undefined">
-                                        <div class="form-group">
-                                           <label for="frmt4_servicio">Servicio</label>
-                                           <select name="frmt4_servicio" id="frmt4_servicio" ng-model="matrireporCtrl.frmt4.servicio" class="form-control input-sm" ng-options="servicio as servicio.codigo for servicio in matrireporCtrl.listadoServicio" ng-change="matrireporCtrl.listarSemestre(matrireporCtrl.frmt4.servicio,'4')"
-                                           required>
-                                              <option value="">Seleccione..</option>
- 
-                                           </select>
-                                           <span ng-show="matrireporCtrl.validateInputF4('frmt4_servicio', 'required')" class="text-danger">Debe seleccionar un servicio</span>
-                                        </div>
-                                     </div>
-                                     <div class="col-md-2" ng-if="matrireporCtrl.frmt4.procesomatricula.id !== undefined && matrireporCtrl.frmt4.servicio.id !== undefined">
-                                        <div class="form-group">
-                                           <label for="frmt4_semestre">Semestre</label>
-                                           <select name="frmt4_semestre" id="frmt4_semestre" ng-model="matrireporCtrl.frmt4.semestre" class="form-control input-sm" ng-options="semestre as semestre.codigo for semestre in matrireporCtrl.listadoSemestreF4" ng-change="matrireporCtrl.listarCurso(matrireporCtrl.frmt4.semestre)"
-                                           required>
-                                              <option value="">Seleccione..</option>
-                                           </select>
-                                           <span ng-show="matrireporCtrl.validateInputF4('frmt4_semestre', 'required')" class="text-danger">Debe seleccionar un semestre</span>
-                                        </div>
-                                     </div>
-                                     <div class="col-md-3" ng-if="matrireporCtrl.frmt4.procesomatricula.id !== undefined
- 
-                                                                                 && matrireporCtrl.frmt4.servicio.id !== undefined
- 
-                                                                                 && matrireporCtrl.frmt4.semestre.id !== undefined">
-                                        <div class="form-group">
-                                           <label for="frmt4_curso">Curso</label>
-                                           <select name="frmt4_curso" id="frmt4_curso" ng-model="matrireporCtrl.frmt4.curso" class="form-control input-sm" ng-options="curso as curso.codigo for curso in matrireporCtrl.listadoCursoF4" required>
-                                              <option value="">Seleccione..</option>
-                                           </select>
-                                           <span ng-show="matrireporCtrl.validateInputF4('frmt4_curso', 'required')" class="text-danger">Debe seleccionar un curso</span>
-                                        </div>
-                                     </div>
-                                     <div class="col-md-2">
-                                        <div class="form-group">
-                                           <p style="color: white">_</p>
-                                           <div class="pull-right">
-                                              <button type="submit" class="btn btn-labeled btn-danger">
-                                                 <span class="btn-label"><i class="fa fa-file-pdf-o"></i>
-                                                 </span>Generar
-                                              </button>
-                                           </div>
-                                        </div>
-                                     </div>
-                                  </form>
-                               </div>
-                            </div>
-                            <div class="row">
-                               <div class="col-md-12">
-                                  <small class="lead">Listado de Matriculados por Proceso→Servicio→Instrumento</small>
-                                  <br>
-                                  <form name="matrireporCtrl.frmTipo5" novalidate="" role="form" class="form-validate" ng-submit="matrireporCtrl.reporteTipo(matrireporCtrl.frmt5,'5')">
-                                     <div class="col-md-3">
-                                        <div class="form-group">
-                                           <label for="frmt5_procesomatricula">Procesomatricula</label>
-                                           <select name="frmt5_procesomatricula" id="frmt5_procesomatricula" ng-model="matrireporCtrl.frmt5.procesomatricula" class="form-control input-sm" ng-options="procesomatricula as procesomatricula.codigo for procesomatricula in matrireporCtrl.listadoProcesoMatriculaF5"
-                                           required>
-                                              <option value="">Seleccione..</option>
-                                           </select>
-                                           <span ng-show="matrireporCtrl.validateInputF5('frmt5_procesomatricula', 'required')" class="text-danger">Debe seleccionar un Proceso</span>
-                                        </div>
-                                     </div>
-                                     <div class="col-md-3" ng-if="matrireporCtrl.frmt5.procesomatricula.id !== undefined">
-                                        <div class="form-group">
-                                           <label for="frmt5_servicio">Servicio</label>
-                                           <select name="frmt5_servicio" id="frmt5_servicio" ng-model="matrireporCtrl.frmt5.servicio" class="form-control input-sm" ng-options="servicio as servicio.codigo for servicio in matrireporCtrl.listadoServicio" ng-change="matrireporCtrl.listarInstrumento(matrireporCtrl.frmt5.servicio)"
-                                           required>
-                                              <option value="">Seleccione..</option>
- 
-                                           </select>
-                                           <span ng-show="matrireporCtrl.validateInputF5('frmt5_servicio', 'required')" class="text-danger">Debe seleccionar un servicio</span>
-                                        </div>
-                                     </div>
-                                     <div class="col-md-3" ng-if="matrireporCtrl.frmt5.procesomatricula.id !== undefined && matrireporCtrl.frmt5.servicio.id">
-                                        <div class="form-group">
-                                           <label for="frmt5_instrumento">instrumento</label>
-                                           <select name="frmt5_instrumento" id="frmt5_instrumento" ng-model="matrireporCtrl.frmt5.instrumento" class="form-control input-sm" ng-options="instrumento as instrumento.denominacion for instrumento in matrireporCtrl.listadoInstrumentoF5" required>
-                                              <option value="">Seleccione..</option>
-                                           </select>
-                                           <span ng-show="matrireporCtrl.validateInputF5('frmt5_instrumento', 'required')" class="text-danger">Debe seleccionar un instrumento</span>
-                                        </div>
-                                     </div>
-                                     <div class="col-md-2 ">
-                                        <div class="form-group">
-                                           <p style="color: white">_</p>
-                                           <div class="pull-right">
-                                              <button type="submit" class="btn btn-labeled btn-danger">
-                                                 <span class="btn-label"><i class="fa fa-file-pdf-o"></i>
-                                                 </span>Generar
-                                              </button>
-                                           </div>
-                                        </div>
-                                     </div>
-                                  </form>
-                               </div>
-                            </div>
-                         </fieldset>
-                      </uib-tab>
- 
-                      <uib-tab heading="Consultar Matricula" ng-click="matrireporCtrl.setTabChangeTo(1)">
-                         <fieldset>
-                            <legend>
-                               <small>Listado de Matrículas</small>
-                            </legend>
- 
-                            <div class="row">
-                               <form name="matrireporCtrl.frmFichasMatricula" novalidate="" role="form" class="form-validate" ng-submit="matrireporCtrl.listarFichaMatriculaExtendPorProcesoPorServicio(matrireporCtrl.filtrosMatricula)">
-                                  <div class="col-md-3">
-                                     <div class="form-group">
-                                        <label for="filtrosReportFichasMatricula_procesomatricula">Procesomatricula</label>
-                                        <select name="filtrosReportFichasMatricula_procesomatricula" id="filtrosReportFichasMatricula_procesomatricula" ng-model="matrireporCtrl.filtrosMatricula.procesomatricula" class="form-control input-sm" ng-options="procesomatricula as procesomatricula.codigo for procesomatricula in matrireporCtrl.listadoProcesoMatriculaF3"
-                                        required>
-                                           <option value="">Seleccione..</option>
-                                        </select>
-                                        <span ng-show="matrireporCtrl.validateInputFM('filtrosReportFichasMatricula_procesomatricula', 'required')" class="text-danger">Debe seleccionar un Proceso</span>
-                                     </div>
-                                  </div>
-                                  <div class="col-md-3">
-                                     <!-- ng-if="matrireporCtrl.frmt3.procesomatricula.id !== undefined"-->
-                                     <div class="form-group">
-                                        <label for="filtrosReportFichasMatricula_servicio">Servicio</label>
-                                        <select name="filtrosReportFichasMatricula_servicio" id="filtrosReportFichasMatricula_servicio" ng-model="matrireporCtrl.filtrosMatricula.servicio" class="form-control input-sm" ng-options="servicio as servicio.codigo for servicio in matrireporCtrl.listadoServicio"
-                                        required>
-                                           <option value="">Seleccione..</option>
- 
-                                        </select>
-                                        <span ng-show="matrireporCtrl.validateInputFM('filtrosReportFichasMatricula_servicio', 'required')" class="text-danger">Debe seleccionar un servicio</span>
-                                     </div>
-                                  </div>
-                                  <div class="col-md-2 ">
-                                     <div class="form-group">
-                                        <p style="color: white">_</p>
-                                        <div class="pull-right">
-                                           <button type="submit" class="btn btn-labeled btn-primary">
-                                              <span class="btn-label"><i class="fa fa-list"></i>
-                                              </span>Mostrar
-                                           </button>
-                                        </div>
-                                     </div>
-                                  </div>
-                               </form>
-                            </div>
- 
-                            <div class="row">
-                               <div class="col-md-12">
-                                  <div id="uigrid-demo" ui-grid-exporter ui-grid="matrireporCtrl.tblFichaMatricula.gridOptions" class="grid"></div>
-                               </div>
-                            </div>
- 
-                         </fieldset>
-                      </uib-tab>
- 
-                   </uib-tabset>
- 
-                   <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
-                   <!--<button ng-click="matrireporCtrl.pop('warning','ADVERTENCIA!','No se encontró Pago para este proceso')">MOSTRAR</button>-->
-                </div>
-             </div>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Admin </title>
+
+    <!-- Bootstrap -->
+    <link href="{%  static 'ta/vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{%  static 'ta/vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{%  static 'ta/vendors/nprogress/nprogress.css' %}" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="{%  static 'ta/css/custom.min.css' %}" rel="stylesheet">
+  </head>
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        {% include 'adminpage/ta_aside.html' %}
+        {% include 'adminpage/ta_header.html' %}
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+               <h2>Listado de mujeres victimas de violencia psicologica por estado civil</h2>
+               <div class="col-md-9 col-sm-9 ">
+                     <select class="form-control">
+                       <option>Soltera</option>
+                       <option>Conviviente</option>
+                       
+                     </select>
+                   </div>
+                   <button type="button" class="btn btn-success btn-xs">Generar</button>
+
           </div>
-       </div>
+        </div>
+
+        <div class="right_col" role="main">
+            <div class="">
+                 <h2>Listado de mujeres victimas de violencia psicologica por estado civil y nivel de educacion</h2>
+                 <div class="col-md-9 col-sm-9 ">
+                       <select class="form-control">
+                         <option>Soltera</option>
+                         <option>Conviviente</option>
+                         
+                       </select>
+                     </div>
+                     <div>
+              <p></p><div class="right_col" role="main">
+                     <div class="col-md-9 col-sm-9 ">
+                        <select class="form-control">
+                          <option>primaria</option>
+                          <option>secundaria</option>
+                          
+                        </select>
+                      </div>
+                      </div>
+                     <button type="button" class="btn btn-success btn-xs">Generar</button>
+  
+            </div>
+          </div>
+
+        
+          </div>
+        <!-- /page content -->
+        {% include 'adminpage/ta_footer.html' %}
+      </div>
+      
     </div>
-    <!-- END row-->
- 
- </div>
+
+    <!-- jQuery -->
+    <script src="{%  static 'ta/vendors/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap -->
+   <script src="{%  static 'ta/vendors/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- FastClick -->
+    <script src="{%  static 'ta/vendors/fastclick/lib/fastclick.js' %}"></script>
+    <!-- NProgress -->
+    <script src="{%  static 'ta/vendors/nprogress/nprogress.js' %}"></script>
+    <!-- jQuery Smart Wizard -->
+    <!-- Custom Theme Scripts -->
+    <script src="{%  static 'ta/js/custom.min.js' %}"></script>
+
+  </body>
+</html>

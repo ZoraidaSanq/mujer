@@ -1,7 +1,11 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from .form import MujerForm
-from .models import (Encuesta)
+from django.shortcuts import render,redirect
+from django.http import HttpResponse, HttpResponseRedirect
+from .form import *
+from .models import *
+from django.contrib.auth import authenticate, login, logout
+from django.db.transaction import atomic
+
+
 
 
 def index(request):
@@ -13,30 +17,66 @@ def index(request):
 def encuesta(request, nombre=None, pk=None):
     context = {
         'formmujer': MujerForm
+        #'formpregunta': PreguntaForm
     }
     if request.method == 'POST':
         formmujer = MujerForm(request.POST)
-        if formmujer.is_valid():
-            formmujer.save()
-        context = {
+        context ={
             'formmujer': formmujer
-        }
+            }
+        if formmujer.is_valid():
+           with atomic ():
+                omujer = formmujer.save(commit=False)
+                omujer.save()
+                oencuesta = Encuesta.objects.first()
+                oencuestaMujer = EncuestaMujer(
+                    nombre=oencuesta.nombre,
+                    num_pre_asig = oencuesta.num_pre_asig,
+                    num_pre_resuelta=0,
+                    encuesta=oencuesta,
+                    mujer=omujer
+                )
+                oencuestaMujer.save()
+                pkqr=oencuestaMujer.id
+                nombreencuesta=oencuesta.nombre.replace ('','-')
+                pk=oencuesta.id 
+                return redirect('hubpage:usuario_app',nombreencuesta,pk,pkqr)
 
     return render(request, 'encuesta/encuesta.html', context)
+        
+def preguntaresul(request,nombre=None,pk=None,pkqr=None):
+    _encuesta = Encuesta.objects.filter(estado=True,isuso=True,id=pk)
+
+    context ={
+        "formmujer" : MujerForm,
+        "formencuesta":_encuesta,
+        "formpregunta":PreguntaForm
+    }
+    return render(request, 'encuesta/encuesta.html',context)
+          
+        
 
 
-def mujer(request):
-    context = {}
-    return render(request, 'hubpage/pag1.html', context)
 
 
-# def mujer2(request,questionario=None,pk=None):
- #   context={}
-  #  return render(request, 'adminpage/ta_base.html', context)
+
 
 def log(request):
-    context = {}
-    return render(request, 'login/logadmin.html', context)
+    if request.method == 'POST':
+        #return redirect('/adminpage/ta_base')
+    #elif request.method == 'POST':
+        variable1 = str(request.POST.get('campo1'))
+        variable2 = str(request.POST.get('campo2'))
+        user = authenticate(request, username=variable1, password=variable2)
+        if user is not None:
+            login(request, user)
+            return  redirect('/intranet')
+    return render (request, 'login/logadmin.html')
+
+def logoutview(request):
+    logout(request)
+
+    return redirect('login/')
 
 
 def mujer2(request):
@@ -54,3 +94,8 @@ def repor(request):
 def encuesta2(request):
     context = {}
     return render(request, 'encuesta/listarenc.html', context)
+
+def preguntaresp(request):
+    context = {}
+    return render(request, 'encuesta/listarenc.html', context)
+

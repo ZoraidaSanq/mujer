@@ -32,7 +32,7 @@ class Likert(ModelAudit):
     denominacion = models.CharField(max_length=60)
     valor = models.PositiveIntegerField()
     encuesta = models.ForeignKey(Encuesta, on_delete=models.PROTECT)
-#para que aparezca el nombre, cuando se usa al admin de django
+    #para que aparezca el nombre, cuando se usa al admin de django
     def __str__(self):
         return self.denominacion
 
@@ -45,14 +45,15 @@ class Pregunta(ModelAudit):
     registro = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     likert = models.ForeignKey(Likert, on_delete=models.PROTECT, blank=True)
-    encuesta = models.ForeignKey(Encuesta, on_delete=models.PROTECT)
     orden = models.PositiveIntegerField()
 
     def __str__(self):
         return '{} -- {}'.format(self.encuesta.nombre, self.pregunta)
 
 
-estados_civiles =(('S','SOLTERA'),)
+estados_civiles =(('S','SOLTERA'),
+                  ('C','CONVIVIENTE')
+)
 
 class Mujer(ModelAudit):
     ocupacion = models.CharField(max_length=40)
@@ -67,8 +68,8 @@ class EncuestaMujer(ModelAudit):
     for every question, the end time and num_pre_resuelta is updated
     """
     nombre = models.CharField(max_length=30)
-    hora_inicio = models.TimeField()
-    hora_fin = models.TimeField(blank=True)
+    hora_inicio = models.TimeField(auto_now_add=True)
+    hora_fin = models.TimeField(null=True)
     num_pre_asig = models.PositiveIntegerField()
     num_pre_resuelta = models.PositiveIntegerField()
     mujer = models.ForeignKey(Mujer, on_delete=models.PROTECT)
