@@ -43,15 +43,20 @@ def encuesta(request, nombre=None, pk=None):
                 return redirect('hubpage:usuario_app',nombreencuesta,pk,pkqr)
 
     return render(request, 'encuesta/encuesta.html', context)
-        
+
+from django.forms import formset_factory
+
 def preguntaresul(request,nombre=None,pk=None,pkqr=None):
     _encuesta = Encuesta.objects.filter(estado=True,isuso=True,id=pk).first()
     a = Pregunta.objects.first()
+    falsoq = [{'encuesta_id':pk,'pregunta':i.pregunta,'pregunta_id': i.id}
+            for i in Pregunta.objects.filter(encuesta_id=pk,estado=True,isuso=True) ]
+    #print(falsoq)
+    PreguntaFormFormSet = formset_factory(PreguntaForm2,max_num=falsoq.__len__())
+
     context ={
         "encuesta" :_encuesta,
-        "form" :PreguntaForm2(encuesta_id=a.encuesta_id,
-                    pregunta=a.pregunta,
-                    id=a.id)
+        "formset" :PreguntaFormFormSet(initial=falsoq)
     }
     return render(request, 'encuesta/listarenc.html',context)
           
@@ -59,7 +64,11 @@ def preguntaresul(request,nombre=None,pk=None,pkqr=None):
 
 
 
-
+"""
+ "form" :PreguntaForm2(encuesta_id=a.encuesta_id,
+                    pregunta=a.pregunta,
+                    id=a.id)
+"""
 
 
 def log(request):

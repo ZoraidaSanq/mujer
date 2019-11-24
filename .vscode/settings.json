@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "D:\\mujerpy\\entornomujer\\Scripts\\python.exe"
+    "python.pythonPath": "D:\\mujerpy\\entornomujer\\Scripts\\python.exe",
+    "python.formatting.provider": "autopep8"
 }

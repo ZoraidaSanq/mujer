@@ -24,24 +24,21 @@ class PreguntaForm(forms.ModelForm):
             'orden': forms.NumberInput(attrs={'class': 'form-control'}),
 
         }
+
+
 class PreguntaForm2(forms.Form):
-    pregunta_id = forms.IntegerField ()
+    pregunta_id = forms.IntegerField()
     pregunta = forms.CharField (max_length=100)
-    likert = forms.IntegerField(widget=forms.Select)
+    likert = forms.IntegerField(widget=forms.Select(attrs={'required':'required'}),required=True)
     def __init__(self, *args, **kwargs):
-        print(kwargs)
-        encuestaid = kwargs.pop('encuesta_id')
-        pregunta = kwargs.pop('pregunta')
-        pregunta_id = kwargs.pop('id')
-
+        encuesta_id = kwargs.get('initial').get('encuesta_id')
         super(PreguntaForm2, self).__init__(*args, **kwargs)
-        self.fields['likert']=forms.ModelChoiceField(queryset=Likert.objects.filter(encuesta_id=int(encuestaid)))
-        self.fields['pregunta'].initial=pregunta
-        self.fields['pregunta_id'].initial=int(pregunta_id)
+        self.fields['likert']=forms.ModelChoiceField(queryset=Likert.objects.filter(encuesta_id=encuesta_id))
+        self.fields['likert'].widget.attrs['class'] = 'form-control'
+        self.fields['likert'].widget.attrs['required'] = 'required'
 
 
-
-    
+  
 
 class EncuestaForm(forms.ModelForm):
     class Meta:
