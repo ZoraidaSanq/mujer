@@ -27,15 +27,16 @@ class PreguntaForm(forms.ModelForm):
 
 
 class PreguntaForm2(forms.Form):
-    pregunta_id = forms.IntegerField()
-    pregunta = forms.CharField (max_length=100)
+    pregunta_id = forms.IntegerField(required=False)
+    pregunta = forms.CharField (max_length=100,required=False)
     likert = forms.IntegerField(widget=forms.Select(attrs={'required':'required'}),required=True)
     def __init__(self, *args, **kwargs):
-        encuesta_id = kwargs.get('initial').get('encuesta_id')
         super(PreguntaForm2, self).__init__(*args, **kwargs)
-        self.fields['likert']=forms.ModelChoiceField(queryset=Likert.objects.filter(encuesta_id=encuesta_id))
-        self.fields['likert'].widget.attrs['class'] = 'form-control'
-        self.fields['likert'].widget.attrs['required'] = 'required'
+        if kwargs.get('initial'):
+            encuesta_id = kwargs.get('initial').get('encuesta_id')
+            self.fields['likert']=forms.ModelChoiceField(queryset=Likert.objects.filter(encuesta_id=encuesta_id))
+            self.fields['likert'].widget.attrs['class'] = 'form-control'
+            self.fields['likert'].widget.attrs['required'] = 'required'
 
 
   

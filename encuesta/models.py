@@ -81,7 +81,7 @@ class EncuestaMujer(ModelAudit):
 
 
 class Preguntaresultado(ModelAudit):
-    pregunta = models.CharField(max_length=60)
+    pregunta_denom = models.CharField(max_length=60)
     valor = models.PositiveIntegerField()
     valor_denom = models.CharField(max_length=60)
     pregunta = models.ForeignKey(Pregunta, on_delete=models.PROTECT)

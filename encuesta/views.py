@@ -47,17 +47,33 @@ def encuesta(request, nombre=None, pk=None):
 from django.forms import formset_factory
 
 def preguntaresul(request,nombre=None,pk=None,pkqr=None):
-    _encuesta = Encuesta.objects.filter(estado=True,isuso=True,id=pk).first()
-    a = Pregunta.objects.first()
     falsoq = [{'encuesta_id':pk,'pregunta':i.pregunta,'pregunta_id': i.id}
-            for i in Pregunta.objects.filter(encuesta_id=pk,estado=True,isuso=True) ]
-    #print(falsoq)
+            for i in Pregunta.objects.filter(encuesta_id=pk,estado=True,isuso=True)[:3] ]
     PreguntaFormFormSet = formset_factory(PreguntaForm2,max_num=falsoq.__len__())
-
     context ={
-        "encuesta" :_encuesta,
-        "formset" :PreguntaFormFormSet(initial=falsoq)
+        "formset": PreguntaFormFormSet(initial=falsoq)
     }
+    if request.method == 'POST':
+        formset = PreguntaFormFormSet(request.POST)
+        context ={
+            'formset': formset
+            }
+        olistLiker = Likert.objects.filter(encuesta_id=pk)
+        for i in formset:
+            if i.is_valid():
+                try:
+                    oliker =olistLiker.filter(pk=int(i.cleaned_data['likert']))[0]
+                    opreg = Pregunta.objects.get(pk=int(i.cleaned_data['pregunta_id']))
+                    asdasd = Preguntaresultado(
+                        pregunta_denom=opreg.pregunta,
+                        pregunta=opreg,
+                        valor=oliker.valor,
+                        valor_denom=oliker.denominacion,
+                        encuesta_id=int(pkqr))
+                    asdasd.save()
+                except Exception as e:
+                     render(request, 'encuesta/listarenc.html',context)
+        return redirect('hubpage:pa1')
     return render(request, 'encuesta/listarenc.html',context)
           
         
