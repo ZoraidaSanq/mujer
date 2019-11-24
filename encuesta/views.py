@@ -46,10 +46,12 @@ def encuesta(request, nombre=None, pk=None):
         
 def preguntaresul(request,nombre=None,pk=None,pkqr=None):
     _encuesta = Encuesta.objects.filter(estado=True,isuso=True,id=pk).first()
-
+    a = Pregunta.objects.first()
     context ={
         "encuesta" :_encuesta,
-        "form" :PreguntaForm2
+        "form" :PreguntaForm2(encuesta_id=a.encuesta_id,
+                    pregunta=a.pregunta,
+                    id=a.id)
     }
     return render(request, 'encuesta/listarenc.html',context)
           

@@ -24,19 +24,23 @@ class PreguntaForm(forms.ModelForm):
             'orden': forms.NumberInput(attrs={'class': 'form-control'}),
 
         }
-class PreguntaForm2(forms.ModelForm):
-     def __init__(self, *args, **kwargs):
-            user = kwargs.pop('user','')
-            super(PreguntaForm2, self).__init__(*args, **kwargs)
-            self.fields['likert']=forms.ModelChoiceField(queryset=Likert.objects.filter(encuesta_id=1))
-     class Meta:
-        model = Pregunta
-        fields = ['pregunta','orden']
-        widgets = {
-            'pregunta': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'ingresa su ocupacion'}),
-            'orden': forms.NumberInput(attrs={'class': 'form-control'}),
-            'likert': forms.Select(attrs={'class': 'form-control'}),
-        }
+class PreguntaForm2(forms.Form):
+    pregunta_id = forms.IntegerField ()
+    pregunta = forms.CharField (max_length=100)
+    likert = forms.IntegerField(widget=forms.Select)
+    def __init__(self, *args, **kwargs):
+        print(kwargs)
+        encuestaid = kwargs.pop('encuesta_id')
+        pregunta = kwargs.pop('pregunta')
+        pregunta_id = kwargs.pop('id')
+
+        super(PreguntaForm2, self).__init__(*args, **kwargs)
+        self.fields['likert']=forms.ModelChoiceField(queryset=Likert.objects.filter(encuesta_id=int(encuestaid)))
+        self.fields['pregunta'].initial=pregunta
+        self.fields['pregunta_id'].initial=int(pregunta_id)
+
+
+
     
 
 class EncuestaForm(forms.ModelForm):

@@ -10,16 +10,7 @@
 
                 {{ form.as_p }}
                 <form class="form-horizontal form-label-left" method="POST"> {% csrf_token %}
-                    {% for i in encuesta.pregunta_set.all %}
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align">{{ i.pregunta }} <span
-                                class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 ">
-                            {{ i }}
-                        </div>
-                    </div>
-                    {% endfor %}
+        
                     <input type="submit" class="form-control" value="enviar"> 
         </form>
       </div>
