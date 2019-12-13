@@ -48,7 +48,7 @@ from django.forms import formset_factory
 
 def preguntaresul(request,nombre=None,pk=None,pkqr=None):
     falsoq = [{'encuesta_id':pk,'pregunta':i.pregunta,'pregunta_id': i.id}
-            for i in Pregunta.objects.filter(encuesta_id=pk,estado=True,isuso=True)[:3] ]
+            for i in Pregunta.objects.filter(encuesta_id=pk,estado=True,isuso=True)[:36] ]
     PreguntaFormFormSet = formset_factory(PreguntaForm2,max_num=falsoq.__len__())
     context ={
         "formset": PreguntaFormFormSet(initial=falsoq)

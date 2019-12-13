@@ -40,11 +40,15 @@ class Likert(ModelAudit):
 class Pregunta(ModelAudit):
     """
     make a function for asign a order
+    1-- i
+    2 --d
+    3 -- g
     """
-    pregunta = models.CharField(max_length=60)
+    pregunta = models.CharField(max_length=100)
     registro = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     orden = models.PositiveIntegerField()
+    tipo = models.PositiveIntegerField()
     encuesta = models.ForeignKey(Encuesta, on_delete=models.PROTECT)
 
     
@@ -79,9 +83,23 @@ class EncuestaMujer(ModelAudit):
     def __str__(self):
         return self.nombre
 
+    def decir_hola(self):
+        return self.nombre + " " +" hola " 
+    
+    def calcular_i(self):
+        lista_preguntas=self.preguntaresultado_set.filter(estado=True)
+        contador=0
+        for i in lista_preguntas:
+            if i.pregunta.tipo == 1:
+                contador+=1
+        return contador 
 
+
+"""
+suma de algunas preguntas
+"""
 class Preguntaresultado(ModelAudit):
-    pregunta_denom = models.CharField(max_length=60)
+    pregunta_denom = models.CharField(max_length=100)
     valor = models.PositiveIntegerField()
     valor_denom = models.CharField(max_length=60)
     pregunta = models.ForeignKey(Pregunta, on_delete=models.PROTECT)
@@ -90,7 +108,6 @@ class Preguntaresultado(ModelAudit):
 
 class Factorviolencia(ModelAudit):
     valori = models.PositiveIntegerField()
-    valord = models.PositiveIntegerField()
     valora = models.PositiveIntegerField()
     encuesta_mujer = models.ForeignKey(EncuestaMujer, on_delete=models.PROTECT)
     sumag = models.PositiveIntegerField()
