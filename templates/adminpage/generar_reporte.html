@@ -1,0 +1,126 @@
+{% extends "adminpage/ta_base.html" %}
+{% block content %}
+
+
+<!--probar primero jejeje-->
+<div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3><strong>Reportes Generales</strong><small></small></h3>
+              </div>
+            </div>
+
+
+
+        <div class="col-md-12 col-sm-12 ">
+          <div class="x_panel">
+              <div class="x_title">
+                <h3><small><strong>Número de mujeres víctimas de violencia psicológica</strong></small></h3>
+              </div>
+
+            <div class="col-sm-10">
+              <div class="dataTables_length" id="datatable_length">
+                <label><strong>Según :  </strong><select name="datatable_length" aria-controls="datatable" class="form-control input-sm">
+                  <option value="">Edad</option>
+                  <option value="">Estado Civil</option>
+                  <option value="">Nivel de educación</option>
+                  <option value="">Desvalorización</option>
+                  <option value="">Aislamiento</option>
+                  <option value="">Intimidación</option>
+                  <option value="">Rango de gravedad</option>                  
+                  </select> 
+                  <!--Seleccione el tipo de usuarios que quiere aparesca el listado-->
+                </label>
+              </div>
+
+              <div >   
+
+                          <div class="col-md-6 col-sm-10  form-group pull-left top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar a...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-secondary" type="button">Buscar</button>
+                    </span>
+                  </div>
+                </div>
+
+              <div>
+                <button type="button" class="btn btn-round btn-success" >Generar Reporte</button>
+              </div>       
+                <!--<button type="button" class="btn btn-round btn-success" ><i class="fa fa-plus-square"></i></button>
+                <button type="button" class="btn btn-round btn-dark"><i class="fa fa-edit"></i></button>
+                <button type="button" class="btn btn-round btn-danger"><i class="fa fa-close"></i></button>
+
+                <button type="button" class="btn btn-round btn-success" >Agregar</button>
+                <button type="button" class="btn btn-round btn-dark">Modificar</button>
+                <button type="button" class="btn btn-round btn-danger">Eliminar</button>-->
+
+              </div>
+            </div>
+        </div>
+      </div> 
+
+<!--
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th>
+                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" id="check-all" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
+                            <p>
+                            </p>
+                            </th>
+                            <th class="column-title">Id</th>
+                            <th class="column-title">Nombre </th>
+                            <th class="column-title">Apellido Paterno </th>
+                            <th class="column-title">Apellido Materno</th>
+                            <th class="column-title">Rol</th>
+                            <th class="column-title">Administrar</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr class="even pointer">
+                            <td class="a-center ">
+                              <div class="icheckbox_flat-green" style="position: relative;">
+                                <input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;">
+                                  <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                                </input>
+                              </div>
+                            </td>
+                            <td class=" ">1</td>
+                            <td class=" ">Ruth</td>
+                            <td class=" ">De La Cruz</td>
+                            <td class=" ">Bautista</td>
+                            <td class="a-right a-right ">Potencial donante</td>
+                            <td class="a-right a-right ">
+                              <button type="button" class="btn btn-round btn-success"><i class="fa fa-plus-square"></i></button>
+                              <button type="button" class="btn btn-round btn-dark"><i class="fa fa-edit"></i></button>
+                              <button type="button" class="btn btn-round btn-danger"><i class="fa fa-close"></i></button>
+                            </td>
+                          </tr>
+                          <tr class="odd pointer">
+                            <td class="a-center ">
+                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
+                            </td>
+                            <td class=" ">2</td>
+                            <td class=" ">Peter</td>
+                            <td class=" ">Rudman</td>
+                            <td class=" "></td>
+                            <td class="a-right a-right ">Potencial donante</td>
+                            <td class= "collapse-link">
+                              <button type="button" class="btn btn-round btn-success"><i class="fa fa-plus-square"></i></button>
+                              <button type="button" class="btn btn-round btn-dark"><i class="fa fa-edit"></i></button>
+                              <button type="button" class="btn btn-round btn-danger"><i class="fa fa-close"></i></button>
+                            </td>
+                          </tr>    
+                        </tbody>
+                      </table>
+                                
+-->
+
+
+</div>
+</div>
+
+
+ {% endblock %}

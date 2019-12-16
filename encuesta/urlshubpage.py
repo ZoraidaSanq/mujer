@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import (index,log,mujer2,repor,encuesta,logoutview,preguntaresul)
+from .views import (index,log,encuesta,logoutview,preguntaresul)
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -15,8 +15,8 @@ urlpatterns = [
     #path('encuesta/<str:questionario>/<int:pk>', mujer2,name='pa3'),
     path('login/', log, name='pa4'),
     path('logout', logoutview, name="logout"),
-    path('intranet/', mujer2,name='pa3'),
-    path('generarep/', repor,name='pa5'),
+    #path('intranet/', mujer2,name='pa3'),
+    #path('generarep/', repor,name='pa5'),
 
 
     

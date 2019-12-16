@@ -105,16 +105,20 @@ def logoutview(request):
     return redirect('login/')
 
 
-def mujer2(request):
-    context = {}
-    return render(request, 'adminpage/ta_base.html', context)
+#def mujer2(request):
+ 
+  #  context = {}
+  
+    #return render(request, 'adminpage/ta_base1.html', context)
 
 
-def repor(request):
-    context = {}
-    return render(request, 'reportes/listarencuesta.html', context)
+def index_reporte(request):
+    context ={'name':'ji'}
+    return render(request, 'adminpage/admin_index.html',context)
 
-
+def generar_reporte(request):
+    context ={'name':'ji'}
+    return render(request, 'adminpage/generar_reporte.html',context)
 
 
 def encuesta2(request):
