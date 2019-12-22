@@ -1,64 +1,42 @@
 {% extends "adminpage/ta_base.html" %}
 {% block content %}
 
-
-<!--probar primero jejeje-->
 <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3><strong>Reportes Generales</strong><small></small></h3>
-              </div>
-            </div>
+  <div class="page-title">
+    <div class="title_left">
+      <h3><strong>Reportes Generales</strong><small></small></h3>
+    </div>
+  </div>
 
+  <div class="col-md-12 col-sm-12 ">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3><small><strong>Número de mujeres víctimas de violencia psicológica</strong></small></h3>
+      </div>
 
-
-        <div class="col-md-12 col-sm-12 ">
-          <div class="x_panel">
-              <div class="x_title">
-                <h3><small><strong>Número de mujeres víctimas de violencia psicológica</strong></small></h3>
-              </div>
-
-            <div class="col-sm-10">
-              <div class="dataTables_length" id="datatable_length">
-                <label><strong>Según :  </strong><select name="datatable_length" aria-controls="datatable" class="form-control input-sm">
-                  <option value="">Edad</option>
-                  <option value="">Estado Civil</option>
-                  <option value="">Nivel de educación</option>
-                  <option value="">Desvalorización</option>
-                  <option value="">Aislamiento</option>
-                  <option value="">Intimidación</option>
-                  <option value="">Rango de gravedad</option>                  
-                  </select> 
-                  <!--Seleccione el tipo de usuarios que quiere aparesca el listado-->
-                </label>
-              </div>
-
-              <div >   
-
-                          <div class="col-md-6 col-sm-10  form-group pull-left top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Buscar a...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-secondary" type="button">Buscar</button>
-                    </span>
-                  </div>
-                </div>
-
-              <div>
-                <button type="button" class="btn btn-round btn-success" >Generar Reporte</button>
-              </div>       
-                <!--<button type="button" class="btn btn-round btn-success" ><i class="fa fa-plus-square"></i></button>
-                <button type="button" class="btn btn-round btn-dark"><i class="fa fa-edit"></i></button>
-                <button type="button" class="btn btn-round btn-danger"><i class="fa fa-close"></i></button>
-
-                <button type="button" class="btn btn-round btn-success" >Agregar</button>
-                <button type="button" class="btn btn-round btn-dark">Modificar</button>
-                <button type="button" class="btn btn-round btn-danger">Eliminar</button>-->
-
-              </div>
-            </div>
+      <div class="col-sm-10">
+        <div class="dataTables_length" id="datatable_length">
+          <label><strong>Según : </strong><select name="datatable_length" aria-controls="datatable"
+              class="form-control input-sm">
+              <option value="">Desvalorización</option>
+              <option value="">Aislamiento</option>
+              <option value="">Intimidación</option>
+              <option value="">Rango de gravedad</option>
+            </select>
+          </label>
         </div>
-      </div> 
+
+
+
+        <div>
+          <button  class="btn btn-round btn-success" type="button">
+            <a href="{% url 'encuesta:pastel' %}"> Generar Reporte </a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--
                       <table class="table table-striped jambo_table bulk_action">
@@ -97,30 +75,53 @@
                               <button type="button" class="btn btn-round btn-dark"><i class="fa fa-edit"></i></button>
                               <button type="button" class="btn btn-round btn-danger"><i class="fa fa-close"></i></button>
                             </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
-                            </td>
-                            <td class=" ">2</td>
-                            <td class=" ">Peter</td>
-                            <td class=" ">Rudman</td>
-                            <td class=" "></td>
-                            <td class="a-right a-right ">Potencial donante</td>
-                            <td class= "collapse-link">
-                              <button type="button" class="btn btn-round btn-success"><i class="fa fa-plus-square"></i></button>
-                              <button type="button" class="btn btn-round btn-dark"><i class="fa fa-edit"></i></button>
-                              <button type="button" class="btn btn-round btn-danger"><i class="fa fa-close"></i></button>
-                            </td>
-                          </tr>    
+                          </tr>   
                         </tbody>
                       </table>
                                 
 -->
 
 
-</div>
-</div>
 
 
- {% endblock %}
+<div class="col-md-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2>ITEMS DE LA INFORMACIÓN PERSONAL
+        <small></small>
+      </h2>
+      <ul class="nav navbar-right panel_toolbox">
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content bs-example-popovers">
+      {% if resultados %}
+      <table>
+        <thead>
+          <tr>
+            <th>nombre</th>
+            <th>descripcion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for resultados in resultados %}
+          <tr>
+            <td>{{ resultados.nombre }} </td>
+            <td>{{ resultados.descripcion }} </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <h1>No existe autores</h1>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+</div>
+{% endblock %}

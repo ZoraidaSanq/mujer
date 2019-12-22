@@ -105,11 +105,9 @@ def logoutview(request):
     return redirect('login/')
 
 
-#def mujer2(request):
- 
-  #  context = {}
-  
-    #return render(request, 'adminpage/ta_base1.html', context)
+def mujer2(request):
+    context = {}
+    return render(request, 'adminpage/ta_base.html', context)
 
 
 def index_reporte(request):
@@ -117,15 +115,30 @@ def index_reporte(request):
     return render(request, 'adminpage/admin_index.html',context)
 
 def generar_reporte(request):
-    context ={'name':'ji'}
-    return render(request, 'adminpage/generar_reporte.html',context)
+    resultados = Encuesta.objects.all() 
+    return render(request,'adminpage/generar_reporte.html',{'resultados':resultados})
 
 
 def encuesta2(request):
     context = {}
     return render(request, 'encuesta/listarenc.html', context)
 
-def preguntaresp(request):
-    context = {}
-    return render(request, 'encuesta/listarenc.html', context)
+def pastel(request):
+    oencuesta = Encuesta.objects.all() 
+    return render(request, 'adminpage/pastel.html', {'oencuesta':oencuesta})
+
+def rango(request):
+    context= {}
+    return render(request, 'adminpage/rango.html', context)
+
+
+#def preguntaresp(request):
+ #   context = {}
+  #  return render(request, 'encuesta/listarenc.html', context)
+
+#def listando(request):
+#    resultados = Encuesta.objects.all() 
+#    return render(request,'adminpage/generar_reporte.html',{'resultados':resultados})
+
+   
 

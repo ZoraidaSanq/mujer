@@ -109,6 +109,7 @@ class Preguntaresultado(ModelAudit):
 class Factorviolencia(ModelAudit):
     valori = models.PositiveIntegerField()
     valora = models.PositiveIntegerField()
+    valord = models.PositiveIntegerField()
     encuesta_mujer = models.ForeignKey(EncuestaMujer, on_delete=models.PROTECT)
     sumag = models.PositiveIntegerField()
     resultado = models.CharField(max_length=60)

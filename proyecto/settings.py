@@ -45,6 +45,7 @@ DJANGO_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
 )
 
 THIRD_PARTY_APPS = (
@@ -144,3 +145,8 @@ STATICFILES_DIRS = [
 
 #MEDIA_URL = '/media/'
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+GRAPH_MODELS = {
+    'all_aplications': True,
+    'group_models': True,
+    }
