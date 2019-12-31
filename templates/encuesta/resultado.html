@@ -1,0 +1,115 @@
+{% extends 'hubpage/tu_base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>
+          <strong>Reportes </strong>
+          <small></small>
+        </h3>
+      </div>
+    </div>
+  
+    <div class="col-md-12 col-sm-12 ">
+      <div class="x_panel">
+  
+        <div class="x_title">
+          <h3>
+            <small>
+              <strong>Lista de </strong>
+            </small>
+          </h3>
+        </div>
+  
+        <div class="col-sm-10">
+          
+          <div class="dataTables_length" id="datatable_length">
+            <label>
+              <strong>Seleccione un tipos de Usuario </strong>
+              <select name="datatable_length" aria-controls="datatable" class="form-control input-sm">
+                
+                <option value=""></option>
+                
+              </select>
+              <!--Seleccione el tipo de usuarios que quiere aparesca el listado-->
+            </label>
+            
+            <h1>{if mujer.calcular.2 >56 }
+                    Number of athletes: {{ athlete_list|length }}
+            </h1>
+            
+            
+          </div>
+  
+          <div>
+            <div class="col-md-6 col-sm-10  form-group pull-left top_search">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar a...">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Buscar</button>
+                </span>
+              </div>
+            </div>
+  
+            <div>
+              <button type="button" class="btn btn-round btn-success">Generar Reporte</button>
+              <button type="button" class="btn btn-round btn-warning">Imprimir</button>
+            </div>
+       
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    {% if inf_personal %}
+    <table class="table table-striped jambo_table bulk_action">
+      <thead>
+        <tr class="headings">
+          <th>
+            <div class="icheckbox_flat-green" style="position: relative;">
+              <input type="checkbox" id="check-all" class="flat" style="position: absolute; opacity: 0;">
+              <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+            </div>
+            <p>
+            </p>
+          </th>
+          <th class="column-title">id</th>
+          <th class="column-title ">Aislamiento </th>
+          <th class="column-title">Intimidación </th>
+          <th class="column-title">Desvalorización</th>
+          <th class="column-title text-center">Rango</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        {% for inf_personal in inf_personal %}
+        <tr class="even pointer">
+          <td class="a-center ">
+            <div class="icheckbox_flat-green" style="position: relative;">
+              <input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;">
+              <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+              </input>
+            </div>
+          </td>
+          <td class=" a-right a-righ ">{{ mujer.id}}</td>
+          <td class=" a-right a-righ ">{{ mujer.contadora }}</td>
+          <td class=" a-right a-righ ">{{ mujer.contadori }}</td>
+          <td class=" a-right a-righ ">{{ mujer.contadord }}</td>
+          <td class=" a-right a-right text-center ">{{ mujer. }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <h1>No existe autores</h1>
+    {% endif %}
+  
+  
+  
+  </div>
+  </div>
+  
+
+{% endblock %}

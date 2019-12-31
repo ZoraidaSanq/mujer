@@ -38,12 +38,7 @@ class Likert(ModelAudit):
 
 
 class Pregunta(ModelAudit):
-    """
-    make a function for asign a order
-    1-- i
-    2 --d
-    3 -- g
-    """
+  
     pregunta = models.CharField(max_length=100)
     registro = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
@@ -54,11 +49,12 @@ class Pregunta(ModelAudit):
     
 
     def __str__(self):
-        return '{} -- {}'.format(self.encuesta.nombre, self.pregunta)
+        return '{} -- {}- {}'.format(self.orden,self.encuesta.nombre, self.pregunta)
 
 
 estados_civiles =(('S','SOLTERA'),
                   ('C','CONVIVIENTE')
+                 
 )
 
 class Mujer(ModelAudit):
@@ -80,19 +76,32 @@ class EncuestaMujer(ModelAudit):
     num_pre_resuelta = models.PositiveIntegerField()
     mujer = models.ForeignKey(Mujer, on_delete=models.PROTECT)
     encuesta = models.ForeignKey(Encuesta, on_delete=models.PROTECT)
+    resultado = models.CharField(max_length=250)
     def __str__(self):
         return self.nombre
 
     def decir_hola(self):
         return self.nombre + " " +" hola " 
-    
-    def calcular_i(self):
+    """
+    make a function for asign a order
+    1-- A
+    2 --I
+    3 -- D
+    """
+    def calcular(self):
         lista_preguntas=self.preguntaresultado_set.filter(estado=True)
-        contador=0
+        contadora=0
+        contadori=0
+        contadord=0
         for i in lista_preguntas:
             if i.pregunta.tipo == 1:
-                contador+=1
-        return contador 
+                contadora+=1
+            if i.pregunta.tipo == 2:
+                contadori+=1
+            if i.pregunta.tipo == 3:
+                contadord+=1
+                
+        return [contadora,contadori,contadord]
 
 
 """
@@ -106,13 +115,3 @@ class Preguntaresultado(ModelAudit):
     encuesta = models.ForeignKey(EncuestaMujer, on_delete=models.PROTECT)
 
 
-class Factorviolencia(ModelAudit):
-    valori = models.PositiveIntegerField()
-    valora = models.PositiveIntegerField()
-    valord = models.PositiveIntegerField()
-    encuesta_mujer = models.ForeignKey(EncuestaMujer, on_delete=models.PROTECT)
-    sumag = models.PositiveIntegerField()
-    resultado = models.CharField(max_length=60)
-
-    def __str__(self):
-        return self.resultado

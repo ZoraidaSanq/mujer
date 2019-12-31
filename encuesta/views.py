@@ -75,9 +75,14 @@ def preguntaresul(request,nombre=None,pk=None,pkqr=None):
                      render(request, 'encuesta/listarenc.html',context)
         return redirect('hubpage:pa1')
     return render(request, 'encuesta/listarenc.html',context)
-          
-        
 
+          
+def resultado(request,pk=None):
+    mujer = EncuestaMujer.objects.get(id=pk)
+    context = {
+        'mujer': mujer
+    }
+    return render(request, 'encuesta/resultado.html', context)       
 
 
 """

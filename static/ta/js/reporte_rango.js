@@ -217,7 +217,7 @@ $(document).ready(function () {
 	// Solo tienes que mandar el nuevo valor
 	var x = 25;
 	var y = 55;
-	var z = 79;
+	var z = 70;
 
 
 
@@ -388,10 +388,10 @@ $(document).ready(function () {
 		  value: 310,
 		  name: 'valor a '
 		}, {
-		  value: 234,
+		  value: 80,
 		  name: 'valor d'
 		}, {
-		  value: 135,
+		  value: 150,
 		  name: 'suma g'
 		}]
 	  }]
