@@ -76,7 +76,7 @@ class EncuestaMujer(ModelAudit):
     num_pre_resuelta = models.PositiveIntegerField()
     mujer = models.ForeignKey(Mujer, on_delete=models.PROTECT)
     encuesta = models.ForeignKey(Encuesta, on_delete=models.PROTECT)
-    resultado = models.CharField(max_length=250)
+    resultado = models.CharField(max_length=250,blank=True,null=True)
     def __str__(self):
         return self.nombre
 
@@ -93,15 +93,16 @@ class EncuestaMujer(ModelAudit):
         contadora=0
         contadori=0
         contadord=0
+        
         for i in lista_preguntas:
             if i.pregunta.tipo == 1:
-                contadora+=1
+                contadora+=i.valor*(100/185)
             if i.pregunta.tipo == 2:
-                contadori+=1
+                contadori+=i.valor*(100/185)
             if i.pregunta.tipo == 3:
-                contadord+=1
+                contadord+=i.valor*(100/185)
                 
-        return [contadora,contadori,contadord]
+        return [contadora,contadori,contadord,(contadori+contadord+contadora)]
 
 
 """

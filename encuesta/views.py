@@ -48,7 +48,7 @@ from django.forms import formset_factory
 
 def preguntaresul(request,nombre=None,pk=None,pkqr=None):
     falsoq = [{'encuesta_id':pk,'pregunta':i.pregunta,'pregunta_id': i.id}
-            for i in Pregunta.objects.filter(encuesta_id=pk,estado=True,isuso=True)[:36] ]
+            for i in Pregunta.objects.filter(encuesta_id=pk,estado=True,isuso=True)[:37] ]
     PreguntaFormFormSet = formset_factory(PreguntaForm2,max_num=falsoq.__len__())
     context ={
         "formset": PreguntaFormFormSet(initial=falsoq)
@@ -73,7 +73,7 @@ def preguntaresul(request,nombre=None,pk=None,pkqr=None):
                     asdasd.save()
                 except Exception as e:
                      render(request, 'encuesta/listarenc.html',context)
-        return redirect('hubpage:pa1')
+        return redirect('hubpage:resultado', pk)
     return render(request, 'encuesta/listarenc.html',context)
 
           

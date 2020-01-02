@@ -217,7 +217,7 @@ $(document).ready(function () {
 	// Solo tienes que mandar el nuevo valor
 	var x = 25;
 	var y = 55;
-	var z = 70;
+	var z = 20;
 
 
 

@@ -7,9 +7,9 @@ from django.contrib.auth import authenticate, login, logout
 app_name='hubpage'
 urlpatterns = [ 
     path('', index,name='pa1'),
-    path('enc/<str:nombre>/<int:pk>', encuesta,name='encuesta'),
-    path('<str:nombre>/<int:pk>/<int:pkqr>',preguntaresul,name='usuario_app'),
     path('resultado/<int:pk>',resultado,name='resultado'),
+    path('enc/<str:nombre>/<int:pk>', encuesta,name='encuesta'),
+    path('enc/<str:nombre>/<int:pk>/<int:pkqr>',preguntaresul,name='usuario_app'),
     
 
    # path('encuesta/', mujer,name='pa2'),
